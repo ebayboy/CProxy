@@ -6,13 +6,13 @@
 #include <functional>
 #include <iostream>
 
-#include "server.h"
 #include "lib/ctl_conn.h"
 #include "lib/event_loop_thread.h"
 #include "lib/event_loop_thread_pool.h"
 #include "lib/msg.h"
 #include "lib/proxy_conn.h"
 #include "lib/util.h"
+#include "server.h"
 
 const int SERVER_LISTEN_EPOLL_EVENTS = (EPOLLIN | EPOLLET | EPOLLRDHUP);
 
@@ -63,12 +63,15 @@ Server::Server(int threadNum, int ctlPort, int proxyPort)
 }
 
 void Server::start() try {
-  // 启动数据交换线程池
+  // 启动业务处理线程池
   eventLoopThreadPool_->start();
-  // 确保public连接监听的线程启动
+
+  // 启动监听线程
   publicListenThread_->StartLoop();
+
   // 主epoll开始轮训
   loop_->Loop();
+
 } catch (const std::exception &e) {
   std::cout << e.what() << std::endl;
   abort();
