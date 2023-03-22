@@ -6,16 +6,16 @@
 #include <unordered_map>
 
 #include "control.h"
-#include "tunnel.h"
 #include "lib/ctl_conn.h"
 #include "lib/event_loop.h"
 #include "lib/event_loop_thread.h"
 #include "lib/event_loop_thread_pool.h"
 #include "lib/proxy_conn.h"
+#include "tunnel.h"
 
 const int UnclaimedProxyMapLen = 4;
-struct UnclaimedProxyMap {
-  std::unordered_map<int, SP_ProxyConn> conns;
+struct UnclaimedProxyMap {                      // TODO: Unclaimed - 无人认领的？
+  std::unordered_map<int, SP_ProxyConn> conns;  // unordered_map<key, value>  <==> hash_map
   std::mutex mutex;
 };
 

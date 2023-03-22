@@ -6,13 +6,13 @@
 #include <functional>
 #include <iostream>
 
-#include "server.h"
 #include "lib/ctl_conn.h"
 #include "lib/event_loop_thread.h"
 #include "lib/event_loop_thread_pool.h"
 #include "lib/msg.h"
 #include "lib/proxy_conn.h"
 #include "lib/util.h"
+#include "server.h"
 
 const int SERVER_LISTEN_EPOLL_EVENTS = (EPOLLIN | EPOLLET | EPOLLRDHUP);
 
