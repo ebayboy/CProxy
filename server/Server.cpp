@@ -63,12 +63,15 @@ Server::Server(int threadNum, int ctlPort, int proxyPort)
 }
 
 void Server::start() try {
-  // 启动数据交换线程池
+  // 启动业务处理线程池
   eventLoopThreadPool_->start();
-  // 确保public连接监听的线程启动
+
+  // 启动监听线程
   publicListenThread_->StartLoop();
+
   // 主epoll开始轮训
   loop_->Loop();
+
 } catch (const std::exception &e) {
   std::cout << e.what() << std::endl;
   abort();

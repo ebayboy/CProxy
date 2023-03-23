@@ -6,15 +6,15 @@
 #include <iostream>
 
 #include "client.h"
-#include "local_conn.h"
-#include "tunnel.h"
 #include "lib/channel.h"
 #include "lib/ctl_conn.h"
 #include "lib/event_loop.h"
 #include "lib/event_loop_thread_pool.h"
 #include "lib/proxy_conn.h"
 #include "lib/util.h"
+#include "local_conn.h"
 #include "spdlog/spdlog.h"
+#include "tunnel.h"
 
 Client::Client(int workThreadNum, std::string proxy_server_host, u_int32_t proxy_server_port,
                std::string local_server_host, u_int32_t local_server_port)
@@ -28,9 +28,16 @@ Client::Client(int workThreadNum, std::string proxy_server_host, u_int32_t proxy
 }
 
 void Client::start() {
+  // 启动数据处理线程池
   eventLoopThreadPool_->start();
+
+  // 初始化控制连接
   initCtlConn();
+
+  // 注册本地服务
   reqNewCtl();
+
+  // epoll事件循环
   loop_->Loop();
 }
 
@@ -148,6 +155,6 @@ void Client::shutdownFromLocal(std::string tun_id, std::string proxy_id, u_int32
   strcpy(req_msg.tun_id, tun_id.c_str());
   strcpy(req_msg.proxy_id, proxy_id.c_str());
   CtlMsg ctl_msg = MakeCtlMsg(NotifyProxyShutdownPeerConn, (char *)&req_msg,
-                                sizeof(NotifyProxyShutdownPeerConnMsg));
+                              sizeof(NotifyProxyShutdownPeerConnMsg));
   ctl_conn_->SendMsg(ctl_msg);
 };
