@@ -1,0 +1,90 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Control	Control.h	/^  Control(int fd, std::string ctl_id, SP_EventLoop loop, Server* server)$/;"	f	class:Control
+Control	Control.h	/^class Control : public std::enable_shared_from_this<Control> {$/;"	c
+PublicConn	public_conn.h	/^  PublicConn(int fd, SP_EventLoopThread thread, Tunnel* tun, std::string proxy_id)$/;"	f	class:PublicConn
+PublicConn	public_conn.h	/^class PublicConn : public TranConn, public std::enable_shared_from_this<PublicConn> {$/;"	c
+SERVER_LISTEN_EPOLL_EVENTS	Server.cpp	/^const int SERVER_LISTEN_EPOLL_EVENTS = (EPOLLIN | EPOLLET | EPOLLRDHUP);$/;"	v
+SP_Control	Tunnel.h	/^  typedef std::shared_ptr<Control> SP_Control;$/;"	t	class:Tunnel
+Server	Server.cpp	/^Server::Server(int threadNum, int ctlPort, int proxyPort)$/;"	f	class:Server
+Server	Server.h	/^class Server : public std::enable_shared_from_this<Server> {$/;"	c
+Tunnel	Tunnel.h	/^  Tunnel(std::string tun_id, SP_EventLoopThread listenThread, SP_EventLoopThreadPool workThreadPool,$/;"	f	class:Tunnel
+Tunnel	Tunnel.h	/^class Tunnel {$/;"	c
+UnclaimedProxyMap	Server.h	/^struct UnclaimedProxyMap {$/;"	s
+UnclaimedProxyMapLen	Server.h	/^const int UnclaimedProxyMapLen = 4;$/;"	v
+acceptor_	Tunnel.h	/^  SP_Channel acceptor_;$/;"	m	class:Tunnel
+bindPublicFdToProxyConn	Tunnel.cpp	/^void Tunnel::bindPublicFdToProxyConn(int publicFd, SP_ProxyConn proxyConn) {$/;"	f	class:Tunnel
+claimProxyConn	Server.cpp	/^void Server::claimProxyConn(void *msg, SP_ProxyConn conn) {$/;"	f	class:Server
+claimProxyConn	Tunnel.cpp	/^void Tunnel::claimProxyConn(SP_ProxyConn proxyConn) {$/;"	f	class:Tunnel
+closing_	public_conn.h	/^  bool closing_;$/;"	m	class:PublicConn
+conn_	Control.h	/^  SP_CtlConn conn_;$/;"	m	class:Control
+conns	Server.h	/^  std::unordered_map<int, SP_ProxyConn> conns;$/;"	m	struct:UnclaimedProxyMap
+control_map_	Server.h	/^  std::unordered_map<std::string, SP_Control> control_map_;$/;"	m	class:Server
+ctlListenFd_	Server.h	/^  int ctlListenFd_;$/;"	m	class:Server
+ctlPort_	Server.h	/^  int ctlPort_;$/;"	m	class:Server
+ctl_	Tunnel.h	/^  SP_Control ctl_;$/;"	m	class:Tunnel
+ctl_acceptor_	Server.h	/^  SP_Channel ctl_acceptor_;$/;"	m	class:Server
+ctl_conn_fd_	Control.h	/^  int ctl_conn_fd_;$/;"	m	class:Control
+ctl_id_	Control.h	/^  std::string ctl_id_;$/;"	m	class:Control
+eventLoopThreadPool_	Server.h	/^  SP_EventLoopThreadPool eventLoopThreadPool_;$/;"	m	class:Server
+freeProxyConn	Tunnel.cpp	/^void Tunnel::freeProxyConn(std::string proxy_id) {$/;"	f	class:Tunnel
+free_proxy_conns_	Tunnel.h	/^  std::vector<SP_ProxyConn> free_proxy_conns_;$/;"	m	class:Tunnel
+free_proxy_conns_mutex_	Tunnel.h	/^  std::mutex free_proxy_conns_mutex_;$/;"	m	class:Tunnel
+getAndPopUndealPublicFd	Tunnel.cpp	/^int Tunnel::getAndPopUndealPublicFd() {$/;"	f	class:Tunnel
+getCtlConn	Control.h	/^  SP_CtlConn getCtlConn() { return conn_; }$/;"	f	class:Control
+getListenAddr	Tunnel.h	/^  std::string getListenAddr() { return listen_addr_; }$/;"	f	class:Tunnel
+getListenPort	Tunnel.h	/^  int getListenPort() { return listen_port_; }$/;"	f	class:Tunnel
+getProxyConn	Tunnel.cpp	/^SP_ProxyConn Tunnel::getProxyConn(std::string proxy_id, bool& isExist) {$/;"	f	class:Tunnel
+getProxyPort	Server.h	/^  int getProxyPort() { return proxyPort_; };$/;"	f	class:Server
+getUnclaimedProxyMapByFd	Server.cpp	/^UnclaimedProxyMap *Server::getUnclaimedProxyMapByFd(int fd) {$/;"	f	class:Server
+handleCtlConnClose	Control.cpp	/^void Control::handleCtlConnClose(SP_CtlConn conn) { server_->control_map_.erase(ctl_id_); };$/;"	f	class:Control
+handleFreeProxyConnReq	Control.cpp	/^void Control::handleFreeProxyConnReq(void *msg, SP_CtlConn conn) {$/;"	f	class:Control
+handleNewCtlReq	Control.cpp	/^void Control::handleNewCtlReq(void *new_ctl_req_msg, SP_CtlConn conn) {$/;"	f	class:Control
+handleNewTunnelReq	Control.cpp	/^void Control::handleNewTunnelReq(void *msg, SP_CtlConn conn) {$/;"	f	class:Control
+handlePeerProxyConnClose	Tunnel.cpp	/^void Tunnel::handlePeerProxyConnClose(SP_ProxyConn proxyConn) {$/;"	f	class:Tunnel
+handleRead	public_conn.cpp	/^void PublicConn::handleRead() {$/;"	f	class:PublicConn
+handleShutdownPublicConn	Control.cpp	/^void Control::handleShutdownPublicConn(void *msg, SP_CtlConn conn) {$/;"	f	class:Control
+handleStartProxyConnRsp	Tunnel.cpp	/^void Tunnel::handleStartProxyConnRsp(void* msg, SP_ProxyConn proxyConn) {$/;"	f	class:Tunnel
+hashedUnclaimedProxyMaps	Server.h	/^  UnclaimedProxyMap* hashedUnclaimedProxyMaps[UnclaimedProxyMapLen];$/;"	m	class:Server
+listen_addr_	Tunnel.h	/^  std::string listen_addr_;$/;"	m	class:Tunnel
+listen_fd_	Tunnel.h	/^  int listen_fd_;$/;"	m	class:Tunnel
+listen_port_	Tunnel.h	/^  int listen_port_;$/;"	m	class:Tunnel
+listen_thread_	Tunnel.h	/^  SP_EventLoopThread listen_thread_;$/;"	m	class:Tunnel
+loop_	Control.h	/^  SP_EventLoop loop_;$/;"	m	class:Control
+loop_	Server.h	/^  SP_EventLoop loop_;$/;"	m	class:Server
+main	Main.cpp	/^int main(int argc, char **argv) {$/;"	f
+mutex	Server.h	/^  std::mutex mutex;$/;"	m	struct:UnclaimedProxyMap
+newCtlConnHandler	Server.cpp	/^void Server::newCtlConnHandler() try {$/;"	f	class:Server
+newProxyConnHandler	Server.cpp	/^void Server::newProxyConnHandler() try {$/;"	f	class:Server
+newPublicConnHandler	Tunnel.cpp	/^void Tunnel::newPublicConnHandler() {$/;"	f	class:Tunnel
+notifyClientNeedProxy	Control.cpp	/^void Control::notifyClientNeedProxy(std::string tun_id) {$/;"	f	class:Control
+popFreeProxyConn	Tunnel.cpp	/^SP_ProxyConn Tunnel::popFreeProxyConn(bool& isEmpty) {$/;"	f	class:Tunnel
+postHandle	public_conn.cpp	/^void PublicConn::postHandle() {$/;"	f	class:PublicConn
+postHandler	Server.cpp	/^void Server::postHandler() {$/;"	f	class:Server
+proxyListenFd_	Server.h	/^  int proxyListenFd_;$/;"	m	class:Server
+proxyPort_	Server.h	/^  int proxyPort_;$/;"	m	class:Server
+proxy_acceptor_	Server.h	/^  SP_Channel proxy_acceptor_;$/;"	m	class:Server
+proxy_conn_map_	Tunnel.h	/^  safe_unordered_map<std::string, SP_ProxyConn> proxy_conn_map_;$/;"	m	class:Tunnel
+proxy_id_	public_conn.h	/^  std::string proxy_id_;$/;"	m	class:PublicConn
+publicListenThread_	Server.h	/^  SP_EventLoopThread publicListenThread_;$/;"	m	class:Server
+public_fd_finish_	Tunnel.h	/^  int public_fd_finish_;$/;"	m	class:Tunnel
+public_fd_in_	Tunnel.h	/^  int public_fd_in_;$/;"	m	class:Tunnel
+public_fds_mutex_	Tunnel.h	/^  std::mutex public_fds_mutex_;$/;"	m	class:Tunnel
+reqStartProxy	Tunnel.cpp	/^void Tunnel::reqStartProxy(int public_fd, SP_ProxyConn proxy_conn) {$/;"	f	class:Tunnel
+server_	Control.h	/^  Server* server_;$/;"	m	class:Control
+shutdownFromPublic	Control.cpp	/^void Control::shutdownFromPublic(std::string tun_id, std::string proxy_id, u_int32_t tran_count) {$/;"	f	class:Control
+shutdownFromPublic	Tunnel.cpp	/^void Tunnel::shutdownFromPublic(std::string proxy_id, u_int32_t tran_count) {$/;"	f	class:Tunnel
+shutdownPublicConn	Tunnel.cpp	/^void Tunnel::shutdownPublicConn(SP_ProxyConn proxyConn) {$/;"	f	class:Tunnel
+start	Server.cpp	/^void Server::start() try {$/;"	f	class:Server
+tun_	public_conn.h	/^  Tunnel* tun_;$/;"	m	class:PublicConn
+tun_id_	Tunnel.h	/^  std::string tun_id_;$/;"	m	class:Tunnel
+tunnel_map_	Control.h	/^  safe_unordered_map<std::string, SP_Tunnel> tunnel_map_;$/;"	m	class:Control
+undeal_public_fds_	Tunnel.h	/^  std::vector<int> undeal_public_fds_;$/;"	m	class:Tunnel
+upsertTunnel	Control.h	/^  void upsertTunnel(std::string tun_id, SP_Tunnel tun) { tunnel_map_.add(tun_id, tun); };$/;"	f	class:Control
+wait_for_start_proxy_conn_map_	Tunnel.h	/^  safe_unordered_map<std::string, SP_ProxyConn> wait_for_start_proxy_conn_map_;$/;"	m	class:Tunnel
+work_pool_	Tunnel.h	/^  SP_EventLoopThreadPool work_pool_;$/;"	m	class:Tunnel
+~PublicConn	public_conn.h	/^  ~PublicConn() { printf("publicConn killing\\n"); }$/;"	f	class:PublicConn
