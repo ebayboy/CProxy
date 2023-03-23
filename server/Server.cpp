@@ -14,6 +14,7 @@
 #include "lib/util.h"
 #include "server.h"
 
+// EPOLLRDHUP ： 客户端关闭连接会出发EPOLLRDHUP事件。
 const int SERVER_LISTEN_EPOLL_EVENTS = (EPOLLIN | EPOLLET | EPOLLRDHUP);
 
 Server::Server(int threadNum, int ctlPort, int proxyPort)
@@ -25,13 +26,15 @@ Server::Server(int threadNum, int ctlPort, int proxyPort)
   // ctl相关
   if (ctlListenFd_ < 0) {
     perror("listen socket fail");
-    abort();
+    abort();  // abort： 终止进程
   }
   ignoreSigpipe();
   if (setfdNonBlock(ctlListenFd_) == -1) {
     perror("set non block fail");
     abort();
   }
+
+  // TODO:  channel作用？  channel && events的互操
   ctl_acceptor_ = SP_Channel(new Channel(ctlListenFd_));
   ctl_acceptor_->SetEvents(SERVER_LISTEN_EPOLL_EVENTS);
   ctl_acceptor_->SetReadHandler(std::bind(&Server::newCtlConnHandler, this));
@@ -53,9 +56,12 @@ Server::Server(int threadNum, int ctlPort, int proxyPort)
   proxy_acceptor_->SetPostHandler(std::bind(&Server::postHandler, this));
   loop_->AddToPoller(proxy_acceptor_);
 
+  // 初始话public监听线程
   publicListenThread_ = SP_EventLoopThread(new EventLoopThread());
+  // 初始化数据转发线程池
   eventLoopThreadPool_ = SP_EventLoopThreadPool(new EventLoopThreadPool(threadNum));
 
+  // TODO? hashedUnclaimedProxyMaps
   // 初始化其他成员数据
   for (int i = 0; i < UnclaimedProxyMapLen; i++) {
     hashedUnclaimedProxyMaps[i] = new UnclaimedProxyMap{};
@@ -78,11 +84,15 @@ void Server::start() try {
 }
 
 // 新ctl连接
+
+// TODO:  try 整个函数？
 void Server::newCtlConnHandler() try {
   struct sockaddr_in client_addr;
   memset(&client_addr, 0, sizeof(struct sockaddr_in));
   socklen_t client_addr_len = sizeof(client_addr);
   int accept_fd = 0;
+
+  // TODO: accept处理完会阻塞？ socket如果是阻塞模式就会阻塞
   while ((accept_fd = accept(ctlListenFd_, (struct sockaddr *)&client_addr, &client_addr_len)) >
          0) {
     SPDLOG_INFO("ctl_accept_fd: {}; from:{}; port:{}", accept_fd, inet_ntoa(client_addr.sin_addr),
