@@ -14,26 +14,30 @@ class Channel {
       close(fd_);
     }
   }
+
   void setFd(int fd) { fd_ = fd; };
   int getFd() { return fd_; };
+
   void SetEvents(__uint32_t events) { events_ = events; };
   void SetRevents(__uint32_t events) { revents_ = events; };
   void AddEvents(__uint32_t events) { events_ |= events; }
   __uint32_t GetEvents() { return events_; }
   __uint32_t GetRevents() { return revents_; }
+
   void SetReadHandler(EventHandler handler) { read_handler_ = handler; };
   void SetWriteHandler(EventHandler handler) { write_handler_ = handler; };
   void SetErrorHandler(EventHandler handler) { error_handler_ = handler; }
   void SetPostHandler(EventHandler handler) { post_handler_ = handler; }
   void SetChannelOwner(SP_ChannelOwner owner) { belong_to_ = owner; }
+
   void HandleEvents();
   bool IsPeerClosed() { return peer_closed_; }
   void SetNeedCloseWhenDelete(bool needClose) { need_close_when_delete_ = needClose; }
 
  private:
-  int fd_;
+  int fd_;  // 对应epoll event的fd
   bool need_close_when_delete_;
-  __uint32_t events_;
+  __uint32_t events_;  // 对应epoll event的events_
   __uint32_t revents_;
   EventHandler read_handler_ = []() {};
   EventHandler error_handler_ = []() {};

@@ -49,6 +49,12 @@ void Epoll::PollDel(SP_Channel channel) {
 
 std::vector<SP_Channel> Epoll::WaitForReadyChannels() {
   for (;;) {
+    // 取vector的首地址：
+    // &*epoll_events_.begin() 解析： epoll_events_.begin()返回第一元素迭代器，
+    // C++中，迭代器就是一个类似于指针的对象，它能够用来遍历C++标准模板库容器中的部分或全部元素，每个迭代器对象代表容器中的确定的地址。
+    //*iter(返回迭代器所指元素的引用)
+    // *epoll_events_.begin()代表第一个元素的引用，
+    // &(*epoll_events_.begin()) : 对引用取地址实际是对原变量取地址， 既取第一个元素的地址
     int event_count =
         epoll_wait(epoll_fd_, &*epoll_events_.begin(), epoll_events_.size(), EPOLLWAIT_TIME);
     if (event_count < 0) {
@@ -65,6 +71,7 @@ std::vector<SP_Channel> Epoll::WaitForReadyChannels() {
 
 std::vector<SP_Channel> Epoll::getReadyChannels(int event_count) {
   std::vector<SP_Channel> ret;
+
   for (int i = 0; i < event_count; i++) {
     epoll_event cur_event = epoll_events_[i];
     int fd = cur_event.data.fd;

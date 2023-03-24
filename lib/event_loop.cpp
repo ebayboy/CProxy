@@ -15,11 +15,12 @@ void EventLoop::UpdateToPoller(SP_Channel channel) { poller_->PollMod(channel); 
 
 void EventLoop::RemoveFromPoller(SP_Channel channel) { poller_->PollDel(channel); }
 
+// loop ->
 void EventLoop::Loop() {
   std::vector<SP_Channel> ready_channels;
   for (;;) {
     ready_channels.clear();
-    ready_channels = poller_->WaitForReadyChannels();
+    ready_channels = poller_->WaitForReadyChannels();  // epoll_wait
     for (SP_Channel chan : ready_channels) {
       chan->HandleEvents();
     }
