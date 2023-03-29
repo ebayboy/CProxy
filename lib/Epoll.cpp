@@ -13,6 +13,7 @@ Epoll::Epoll() : epoll_fd_(epoll_create1(EPOLL_CLOEXEC)), epoll_events_(EVENTSNU
   assert(epoll_fd_ > 0);
 }
 
+// add fd && ep_event to epoll
 void Epoll::PollAdd(SP_Channel channel) {
   int fd = channel->getFd();
   epoll_event event;
@@ -64,7 +65,6 @@ std::vector<SP_Channel> Epoll::WaitForReadyChannels() {
       continue;
     }
 
-    // 遍历epoll_events_事件容器， 将事件封装到channel中
     std::vector<SP_Channel> readyChannels = getReadyChannels(event_count);
     if (readyChannels.size() > 0) {
       return readyChannels;
@@ -72,6 +72,7 @@ std::vector<SP_Channel> Epoll::WaitForReadyChannels() {
   }
 }
 
+// 遍历epoll_events_事件容器， 将事件封装到channel中
 std::vector<SP_Channel> Epoll::getReadyChannels(int event_count) {
   std::vector<SP_Channel> ret;
 
