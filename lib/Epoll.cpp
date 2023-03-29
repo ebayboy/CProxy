@@ -55,6 +55,8 @@ std::vector<SP_Channel> Epoll::WaitForReadyChannels() {
     //*iter(返回迭代器所指元素的引用)
     // *epoll_events_.begin()代表第一个元素的引用，
     // &(*epoll_events_.begin()) : 对引用取地址实际是对原变量取地址， 既取第一个元素的地址
+    // TODO: epoll_events_.size() 是多大？ 默认vector初始size是0的话，
+    // 如果是0的话epoll_wait会返回-1报错的。
     int event_count =
         epoll_wait(epoll_fd_, &*epoll_events_.begin(), epoll_events_.size(), EPOLLWAIT_TIME);
     if (event_count < 0) {
@@ -62,6 +64,7 @@ std::vector<SP_Channel> Epoll::WaitForReadyChannels() {
       continue;
     }
 
+    // 遍历epoll_events_事件容器， 将事件封装到channel中
     std::vector<SP_Channel> readyChannels = getReadyChannels(event_count);
     if (readyChannels.size() > 0) {
       return readyChannels;
