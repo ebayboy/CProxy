@@ -5,11 +5,12 @@
 #include "channel.h"
 #include "event_dispatcher.h"
 
-class Epoll : public EventDispatcher {
+class Epoll : public EventDispatcher {  /// 类Epoll实现接口EventDispatcher
  public:
   Epoll();
   virtual ~Epoll(){};
-  virtual void PollAdd(SP_Channel) override final;
+  virtual void PollAdd(
+      SP_Channel) override final;  /// override：重写基类方法； final无法被子类继续重写
   virtual void PollMod(SP_Channel) override final;
   virtual void PollDel(SP_Channel) override final;
   virtual std::vector<SP_Channel> WaitForReadyChannels() override final;
@@ -23,4 +24,4 @@ class Epoll : public EventDispatcher {
   std::vector<epoll_event> epoll_events_;
 };
 
-typedef std::shared_ptr<Epoll> SP_Epoll;
+typedef std::shared_ptr<Epoll> SP_Epoll;  /// 推荐改写为 using SP_Epoll = std::shared_ptr<Epoll>
