@@ -11,7 +11,8 @@ class Epoll : public EventDispatcher {  /// 类Epoll实现接口EventDispatcher
   virtual ~Epoll(){};
   virtual void PollAdd(
       SP_Channel) override final;  /// override：重写基类方法； final无法被子类继续重写
-  virtual void PollMod(SP_Channel) override final;
+  virtual void PollMod(SP_Channel)
+      override final;  /// SP_Channel是类型， 函数声明时可以没有形参， 但定义时必须有形参
   virtual void PollDel(SP_Channel) override final;
   virtual std::vector<SP_Channel> WaitForReadyChannels() override final;
   int get_fd() { return epoll_fd_; }

@@ -48,6 +48,8 @@ void Epoll::PollDel(SP_Channel channel) {
   fd2chan_[fd].reset();
 }
 
+/// 调用底层函数epoll_wait， 将epoll事件封装到存储到readyChannels容器中。
+/// @return
 std::vector<SP_Channel> Epoll::WaitForReadyChannels() {
   for (;;) {
     // 取vector的首地址：
