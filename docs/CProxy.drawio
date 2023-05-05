@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-05-05T11:33:00.877Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="aVoBN5Uc_WNzJe9TiiwN" version="21.2.2" type="github" pages="4">
+<mxfile host="app.diagrams.net" modified="2023-05-05T11:34:01.565Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="Gau-3ziMls-OhZdvHwg_" version="21.2.2" type="github" pages="4">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="1143" dy="648" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -297,8 +297,14 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="-FK1nzbLuUJqzBw0_WvF-18" value="map[CGID][sshConn1,sshConn2,...]。" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="80" y="290" width="150" height="40" as="geometry" />
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-18" value="专线组查找&lt;br&gt;map[CGID][sshConn1,sshConn2,...]。" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="285" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-27" value="a.com" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="930" y="370" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-28" value="b.com" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="930" y="440" width="130" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
