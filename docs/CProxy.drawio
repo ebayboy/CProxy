@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-05-05T11:30:32.089Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="qpBDUvmiD3PNdLvGPwHx" version="21.2.2" type="github" pages="4">
+<mxfile host="app.diagrams.net" modified="2023-05-05T11:32:14.191Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="wSKjRsbMAz66R6ZYgx7K" version="21.2.2" type="github" pages="4">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="1143" dy="648" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -234,11 +234,20 @@
         <mxCell id="-FK1nzbLuUJqzBw0_WvF-1" value="&lt;p class=&quot;sl-paragraph&quot;&gt;1. connector_server先不区分地域，也可以每个地域提供2台机器（例如：hb1、hb2、hd1、hd2、hn1、hn2）。&lt;/p&gt;&lt;p class=&quot;sl-paragraph&quot;&gt;2. connector_server对外监听两个端口，1.接收connector_cli建立长连接（例如：8443）。2.接收JFE转发的请求（例如：443）。&lt;/p&gt;&lt;p class=&quot;sl-paragraph&quot;&gt;3. connector_cli新建连接后上报专线组ID和专线ID(可能从token中获取)，connector_server维护一个map[CGID][sshConn1,sshConn2,...]。&lt;/p&gt;&lt;p class=&quot;sl-paragraph&quot;&gt;4. connector_server和JFE的连接支持返回502或者504或者close连接，用以JFE的健康检查。&lt;/p&gt;&lt;p class=&quot;sl-paragraph&quot;&gt;5. connector_server根据JFE转发请求头的host或x-cg-id选一组专线，根据负载均衡策略转发请求到对应的连接上（ssh连接复用，每个客户端连接会基于tcp新建一个session）。&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="50" y="60" width="840" height="80" as="geometry" />
         </mxCell>
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="-FK1nzbLuUJqzBw0_WvF-2" target="-FK1nzbLuUJqzBw0_WvF-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="-FK1nzbLuUJqzBw0_WvF-2" value="启动" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="270" y="210" width="140" height="50" as="geometry" />
+          <mxGeometry x="275" y="200" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="-FK1nzbLuUJqzBw0_WvF-3" target="-FK1nzbLuUJqzBw0_WvF-4">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="-FK1nzbLuUJqzBw0_WvF-3" value="监听443端口" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="270" y="290" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="-FK1nzbLuUJqzBw0_WvF-4" target="-FK1nzbLuUJqzBw0_WvF-18">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="-FK1nzbLuUJqzBw0_WvF-4" value="监听8443端口" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="270" y="370" width="150" height="40" as="geometry" />
@@ -246,7 +255,7 @@
         <mxCell id="-FK1nzbLuUJqzBw0_WvF-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;curved=1;" edge="1" parent="1" source="-FK1nzbLuUJqzBw0_WvF-5" target="-FK1nzbLuUJqzBw0_WvF-3">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="-FK1nzbLuUJqzBw0_WvF-19" value="request + heart" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="-FK1nzbLuUJqzBw0_WvF-9">
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-19" value="请求[host | x-cg-id] + 健康检查[502 | 504}" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="-FK1nzbLuUJqzBw0_WvF-9">
           <mxGeometry x="-0.0667" y="4" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
