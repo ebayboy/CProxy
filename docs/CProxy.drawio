@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-05-05T09:08:19.337Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="j_KlHzF5mU7ZqUrLqLST" version="21.2.2" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2023-05-05T09:08:53.376Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="P6nL9YQXFK36bGjQHqvf" version="21.2.2" type="github" pages="2">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="1143" dy="648" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -89,7 +89,7 @@
         <mxCell id="uEVatpgAaktyn4IdKIA6-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="uEVatpgAaktyn4IdKIA6-2" target="uEVatpgAaktyn4IdKIA6-1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="uEVatpgAaktyn4IdKIA6-9" value="Session连接" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="uEVatpgAaktyn4IdKIA6-7">
+        <mxCell id="uEVatpgAaktyn4IdKIA6-9" value="tcp + 虚拟连接" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="uEVatpgAaktyn4IdKIA6-7">
           <mxGeometry x="-0.1641" y="-2" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
