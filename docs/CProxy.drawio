@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-05-05T11:15:21.465Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="qzIaD-Sj-ZA4BoyGwCX2" version="21.2.2" type="github" pages="3">
+<mxfile host="app.diagrams.net" modified="2023-05-05T11:16:20.815Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="yr8a0ifLE_Bp3OWj5yBo" version="21.2.2" type="github" pages="3">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="1143" dy="648" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -119,11 +119,8 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="46LG515Fd6CEXBDJiTJA-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="46LG515Fd6CEXBDJiTJA-2" target="46LG515Fd6CEXBDJiTJA-5">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
         <mxCell id="46LG515Fd6CEXBDJiTJA-2" value="启动参数insid &amp;amp; cgid" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="430" y="160" width="120" height="50" as="geometry" />
+          <mxGeometry x="430" y="90" width="120" height="50" as="geometry" />
         </mxCell>
         <mxCell id="46LG515Fd6CEXBDJiTJA-3" value="spa_controller" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
           <mxGeometry x="810" y="230" width="100" height="40" as="geometry" />
@@ -140,16 +137,16 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="46LG515Fd6CEXBDJiTJA-5" value="获取spa_token、server_token" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="430" y="251" width="120" height="50" as="geometry" />
+          <mxGeometry x="430" y="258" width="120" height="50" as="geometry" />
         </mxCell>
         <mxCell id="46LG515Fd6CEXBDJiTJA-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="46LG515Fd6CEXBDJiTJA-6" target="46LG515Fd6CEXBDJiTJA-7">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="46LG515Fd6CEXBDJiTJA-6" value="获取servers地址" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="430" y="340" width="120" height="50" as="geometry" />
+          <mxGeometry x="430" y="347" width="120" height="50" as="geometry" />
         </mxCell>
         <mxCell id="46LG515Fd6CEXBDJiTJA-7" value="与servers建立tcp连接" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="430" y="430" width="120" height="50" as="geometry" />
+          <mxGeometry x="430" y="437" width="120" height="50" as="geometry" />
         </mxCell>
         <mxCell id="46LG515Fd6CEXBDJiTJA-12" value="" style="group" vertex="1" connectable="0" parent="1">
           <mxGeometry x="810" y="430" width="120" height="60" as="geometry" />
@@ -167,7 +164,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="46LG515Fd6CEXBDJiTJA-13" value="程序启动" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="440" y="100" width="100" height="40" as="geometry" />
+          <mxGeometry x="440" y="30" width="100" height="40" as="geometry" />
         </mxCell>
         <mxCell id="46LG515Fd6CEXBDJiTJA-22" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;curved=1;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="46LG515Fd6CEXBDJiTJA-6">
           <mxGeometry relative="1" as="geometry">
@@ -183,6 +180,9 @@
           <mxGeometry x="-0.3007" y="-3" relative="1" as="geometry">
             <mxPoint x="30" y="-19" as="offset" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="46LG515Fd6CEXBDJiTJA-26" value="刷新token" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="170" width="120" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
