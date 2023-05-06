@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-05-06T01:12:33.212Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="23gpGTA3N2YkrHnPIivp" version="21.2.2" type="github" pages="4">
+<mxfile host="app.diagrams.net" modified="2023-05-06T01:13:24.388Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="MQDT77UDIMR4NEpNlu_Y" version="21.2.2" type="github" pages="4">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="1143" dy="648" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -110,6 +110,89 @@
         </mxCell>
         <mxCell id="uEVatpgAaktyn4IdKIA6-4" value="Actor" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
           <mxGeometry x="30" y="280" width="30" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="HGF8y2-VX5htVXV4lV4U" name="connector_server">
+    <mxGraphModel dx="1306" dy="673" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-1" value="&lt;p class=&quot;sl-paragraph&quot;&gt;1. connector_server先不区分地域，也可以每个地域提供2台机器（例如：hb1、hb2、hd1、hd2、hn1、hn2）。&lt;/p&gt;&lt;p class=&quot;sl-paragraph&quot;&gt;2. connector_server对外监听两个端口，1.接收connector_cli建立长连接（例如：8443）。2.接收JFE转发的请求（例如：443）。&lt;/p&gt;&lt;p class=&quot;sl-paragraph&quot;&gt;3. connector_cli新建连接后上报专线组ID和专线ID(可能从token中获取)，connector_server维护一个map[CGID][sshConn1,sshConn2,...]。&lt;/p&gt;&lt;p class=&quot;sl-paragraph&quot;&gt;4. connector_server和JFE的连接支持返回502或者504或者close连接，用以JFE的健康检查。&lt;/p&gt;&lt;p class=&quot;sl-paragraph&quot;&gt;5. connector_server根据JFE转发请求头的host或x-cg-id选一组专线，根据负载均衡策略转发请求到对应的连接上（ssh连接复用，每个客户端连接会基于tcp新建一个session）。&lt;/p&gt;&lt;p class=&quot;sl-paragraph&quot;&gt;专线组与App是多对多的关系&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="50" y="60" width="840" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="-FK1nzbLuUJqzBw0_WvF-2" target="-FK1nzbLuUJqzBw0_WvF-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-2" value="启动" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="275" y="200" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="-FK1nzbLuUJqzBw0_WvF-3" target="-FK1nzbLuUJqzBw0_WvF-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="-FK1nzbLuUJqzBw0_WvF-3" target="-FK1nzbLuUJqzBw0_WvF-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-3" value="监听443端口&lt;br&gt;对外Web端口" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="285" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-4" value="监听8443端口&lt;br&gt;Accept client TCP长连接" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="370" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;curved=1;" edge="1" parent="1" source="-FK1nzbLuUJqzBw0_WvF-5" target="-FK1nzbLuUJqzBw0_WvF-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-19" value="请求[host | x-cg-id] + 健康检查[502 | 504}" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="-FK1nzbLuUJqzBw0_WvF-9">
+          <mxGeometry x="-0.0667" y="4" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;curved=1;" edge="1" parent="1" source="-FK1nzbLuUJqzBw0_WvF-7" target="-FK1nzbLuUJqzBw0_WvF-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-12" value="TCP长连接[server_token(insid + cgid)]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="-FK1nzbLuUJqzBw0_WvF-11">
+          <mxGeometry x="-0.1133" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-15" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="710" y="360" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-7" value="connector_cli" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="-FK1nzbLuUJqzBw0_WvF-15">
+          <mxGeometry width="130" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-13" value="connector_cli" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="-FK1nzbLuUJqzBw0_WvF-15">
+          <mxGeometry x="10" y="10" width="130" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-14" value="connector_cli" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="-FK1nzbLuUJqzBw0_WvF-15">
+          <mxGeometry x="20" y="20" width="130" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-17" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="710" y="280" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-5" value="JFE" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="-FK1nzbLuUJqzBw0_WvF-17">
+          <mxGeometry width="130" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-16" value="JFE" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="-FK1nzbLuUJqzBw0_WvF-17">
+          <mxGeometry x="10" y="10" width="130" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="-FK1nzbLuUJqzBw0_WvF-18" target="-FK1nzbLuUJqzBw0_WvF-14">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="160" y="490" />
+              <mxPoint x="795" y="490" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-18" value="专线组查找&lt;br&gt;map[CGID][sshConn1,sshConn2,...]。" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="285" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-27" value="a.com" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="930" y="370" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="-FK1nzbLuUJqzBw0_WvF-28" value="b.com" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="930" y="440" width="130" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
@@ -231,89 +314,6 @@
         </mxCell>
         <mxCell id="2zQM7qp8JFLGpoTj_jYJ-3" value="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;p class=&quot;sl-paragraph&quot;&gt;&lt;span&gt;1. 控制台创建专线时，生成专线组CGID，并生成一个安装专线的命令（例如：wget -O - https://ztrust.com/install.sh | INSID=xxxx CGID=xxx  bash）。 &lt;/span&gt;&lt;/p&gt;&lt;p class=&quot;sl-paragraph&quot;&gt;&lt;span&gt;2. 客户安装好，调用启动脚本启动connector_cli时传入：实例ID、专线组ID。&lt;/span&gt;&lt;/p&gt;&lt;p class=&quot;sl-paragraph&quot;&gt;&lt;span&gt;3. connector_cli启动后，用实例ID和专线ID调用spa_controller的install接口，返回认证token。并定时请求token接口刷新token（重启也调用token接口刷新token）。&lt;/span&gt;&lt;/p&gt;&lt;p class=&quot;sl-paragraph&quot;&gt;&lt;span&gt;4. connector_cli用登陆token从spa_controller的rs接口获取connect_server的地址（hb1:8443, hb2:8443,hd1:8443 ...），然后循环地址并带token请求建立tcp长连接。&lt;/span&gt;&lt;/p&gt;&lt;p class=&quot;sl-paragraph&quot;&gt;&lt;span&gt;5. connector_cli定时监控连接并重建，新的连接要上报专线组ID和专线ID（专线组ID和专线ID也可能带到token中）。&lt;/span&gt;&lt;/p&gt;&lt;span data-sl-origin-json=&quot;JTVCJTdCJTIydHlwZSUyMiUzQSUyMnAlMjIlMkMlMjJpZCUyMiUzQSUyMmVCOFo2dSUyMiUyQyUyMmNoaWxkcmVuJTIyJTNBJTVCJTdCJTIydGV4dCUyMiUzQSUyMjEuJTIwJUU2JThFJUE3JUU1JTg4JUI2JUU1JThGJUIwJUU1JTg4JTlCJUU1JUJCJUJBJUU0JUI4JTkzJUU3JUJBJUJGJUU2JTk3JUI2JUVGJUJDJThDJUU3JTk0JTlGJUU2JTg4JTkwJUU0JUI4JTkzJUU3JUJBJUJGJUU3JUJCJTg0Q0dJRCVFRiVCQyU4QyVFNSVCOSVCNiVFNyU5NCU5RiVFNiU4OCU5MCVFNCVCOCU4MCVFNCVCOCVBQSVFNSVBRSU4OSVFOCVBMyU4NSVFNCVCOCU5MyVFNyVCQSVCRiVFNyU5QSU4NCVFNSU5MSVCRCVFNCVCQiVBNCVFRiVCQyU4OCVFNCVCRSU4QiVFNSVBNiU4MiVFRiVCQyU5QXdnZXQlMjAtTyUyMC0lMjBodHRwcyUzQSUyRiUyRnp0cnVzdC5jb20lMkZpbnN0YWxsLnNoJTIwJTdDJTIwSU5TSUQlM0R4eHh4JTIwQ0dJRCUzRHh4eCUyMCUyMGJhc2glRUYlQkMlODklRTMlODAlODIlMjAlMjIlN0QlNUQlN0QlMkMlN0IlMjJ0eXBlJTIyJTNBJTIycCUyMiUyQyUyMmlkJTIyJTNBJTIyS0ZUcEZTJTIyJTJDJTIyY2hpbGRyZW4lMjIlM0ElNUIlN0IlMjJ0ZXh0JTIyJTNBJTIyMi4lMjAlRTUlQUUlQTIlRTYlODglQjclRTUlQUUlODklRTglQTMlODUlRTUlQTUlQkQlRUYlQkMlOEMlRTglQjAlODMlRTclOTQlQTglRTUlOTAlQUYlRTUlOEElQTglRTglODQlOUElRTYlOUMlQUMlRTUlOTAlQUYlRTUlOEElQThjb25uZWN0b3JfY2xpJUU2JTk3JUI2JUU0JUJDJUEwJUU1JTg1JUE1JUVGJUJDJTlBJUU1JUFFJTlFJUU0JUJFJThCSUQlRTMlODAlODElRTQlQjglOTMlRTclQkElQkYlRTclQkIlODRJRCVFMyU4MCU4MiUyMiU3RCU1RCU3RCUyQyU3QiUyMnR5cGUlMjIlM0ElMjJwJTIyJTJDJTIyaWQlMjIlM0ElMjIwLVc0TUglMjIlMkMlMjJjaGlsZHJlbiUyMiUzQSU1QiU3QiUyMnRleHQlMjIlM0ElMjIzLiUyMGNvbm5lY3Rvcl9jbGklRTUlOTAlQUYlRTUlOEElQTglRTUlOTAlOEUlRUYlQkMlOEMlRTclOTQlQTglRTUlQUUlOUUlRTQlQkUlOEJJRCVFNSU5MiU4QyVFNCVCOCU5MyVFNyVCQSVCRklEJUU4JUIwJTgzJUU3JTk0JUE4c3BhX2NvbnRyb2xsZXIlRTclOUElODRpbnN0YWxsJUU2JThFJUE1JUU1JThGJUEzJUVGJUJDJThDJUU4JUJGJTk0JUU1JTlCJTlFJTVDYiVFOCVBRSVBNCVFOCVBRiU4MXRva2VuJUUzJTgwJTgyJUU1JUI5JUI2JUU1JUFFJTlBJUU2JTk3JUI2JUU4JUFGJUI3JUU2JUIxJTgydG9rZW4lRTYlOEUlQTUlRTUlOEYlQTMlRTUlODglQjclRTYlOTYlQjB0b2tlbiVFRiVCQyU4OCVFOSU4NyU4RCVFNSU5MCVBRiVFNCVCOSU5RiVFOCVCMCU4MyVFNyU5NCVBOHRva2VuJUU2JThFJUE1JUU1JThGJUEzJUU1JTg4JUI3JUU2JTk2JUIwdG9rZW4lRUYlQkMlODklRTMlODAlODIlMjIlN0QlNUQlN0QlMkMlN0IlMjJ0eXBlJTIyJTNBJTIycCUyMiUyQyUyMmlkJTIyJTNBJTIyS0RIV3pPJTIyJTJDJTIyY2hpbGRyZW4lMjIlM0ElNUIlN0IlMjJ0ZXh0JTIyJTNBJTIyNC4lMjBjb25uZWN0b3JfY2xpJUU3JTk0JUE4JUU3JTk5JUJCJUU5JTk5JTg2dG9rZW4lRTQlQkIlOEVzcGFfY29udHJvbGxlciVFNyU5QSU4NHJzJUU2JThFJUE1JUU1JThGJUEzJUU4JThFJUI3JUU1JThGJTk2Y29ubmVjdF9zZXJ2ZXIlRTclOUElODQlRTUlOUMlQjAlRTUlOUQlODAlRUYlQkMlODhoYjElM0E4NDQzJTJDJTIwaGIyJTNBODQ0MyUyQ2hkMSUzQTg0NDMlMjAuLi4lRUYlQkMlODklRUYlQkMlOEMlRTclODQlQjYlRTUlOTAlOEUlRTUlQkUlQUElRTclOEUlQUYlRTUlOUMlQjAlRTUlOUQlODAlRTUlQjklQjYlRTUlQjglQTZ0b2tlbiVFOCVBRiVCNyVFNiVCMSU4MiVFNSVCQiVCQSVFNyVBQiU4QnRjcCVFOSU5NSVCRiVFOCVCRiU5RSVFNiU4RSVBNSVFMyU4MCU4MiUyMiU3RCU1RCU3RCUyQyU3QiUyMnR5cGUlMjIlM0ElMjJwJTIyJTJDJTIyaWQlMjIlM0ElMjJ6M1NvbTUlMjIlMkMlMjJjaGlsZHJlbiUyMiUzQSU1QiU3QiUyMnRleHQlMjIlM0ElMjI1LiUyMGNvbm5lY3Rvcl9jbGklRTUlQUUlOUElRTYlOTclQjYlRTclOUIlOTElRTYlOEUlQTclRTglQkYlOUUlRTYlOEUlQTUlRTUlQjklQjYlRTklODclOEQlRTUlQkIlQkElRUYlQkMlOEMlRTYlOTYlQjAlRTclOUElODQlRTglQkYlOUUlRTYlOEUlQTUlRTglQTYlODElRTQlQjglOEElRTYlOEElQTUlRTQlQjglOTMlRTclQkElQkYlRTclQkIlODRJRCVFNSU5MiU4QyVFNCVCOCU5MyVFNyVCQSVCRklEJUVGJUJDJTg4JUU0JUI4JTkzJUU3JUJBJUJGJUU3JUJCJTg0SUQlRTUlOTIlOEMlRTQlQjglOTMlRTclQkElQkZJRCVFNCVCOSU5RiVFNSU4RiVBRiVFOCU4MyVCRCVFNSVCOCVBNiVFNSU4OCVCMHRva2VuJUU0JUI4JUFEJUVGJUJDJTg5JUUzJTgwJTgyJTIyJTdEJTVEJTdEJTVE&quot;&gt;&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="10" y="10" width="540" height="210" as="geometry" />
-        </mxCell>
-      </root>
-    </mxGraphModel>
-  </diagram>
-  <diagram id="HGF8y2-VX5htVXV4lV4U" name="connector_server">
-    <mxGraphModel dx="1306" dy="673" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
-      <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />
-        <mxCell id="-FK1nzbLuUJqzBw0_WvF-1" value="&lt;p class=&quot;sl-paragraph&quot;&gt;1. connector_server先不区分地域，也可以每个地域提供2台机器（例如：hb1、hb2、hd1、hd2、hn1、hn2）。&lt;/p&gt;&lt;p class=&quot;sl-paragraph&quot;&gt;2. connector_server对外监听两个端口，1.接收connector_cli建立长连接（例如：8443）。2.接收JFE转发的请求（例如：443）。&lt;/p&gt;&lt;p class=&quot;sl-paragraph&quot;&gt;3. connector_cli新建连接后上报专线组ID和专线ID(可能从token中获取)，connector_server维护一个map[CGID][sshConn1,sshConn2,...]。&lt;/p&gt;&lt;p class=&quot;sl-paragraph&quot;&gt;4. connector_server和JFE的连接支持返回502或者504或者close连接，用以JFE的健康检查。&lt;/p&gt;&lt;p class=&quot;sl-paragraph&quot;&gt;5. connector_server根据JFE转发请求头的host或x-cg-id选一组专线，根据负载均衡策略转发请求到对应的连接上（ssh连接复用，每个客户端连接会基于tcp新建一个session）。&lt;/p&gt;&lt;p class=&quot;sl-paragraph&quot;&gt;专线组与App是多对多的关系&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="50" y="60" width="840" height="70" as="geometry" />
-        </mxCell>
-        <mxCell id="-FK1nzbLuUJqzBw0_WvF-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="-FK1nzbLuUJqzBw0_WvF-2" target="-FK1nzbLuUJqzBw0_WvF-3">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="-FK1nzbLuUJqzBw0_WvF-2" value="启动" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="275" y="200" width="140" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="-FK1nzbLuUJqzBw0_WvF-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="-FK1nzbLuUJqzBw0_WvF-3" target="-FK1nzbLuUJqzBw0_WvF-4">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="-FK1nzbLuUJqzBw0_WvF-24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="-FK1nzbLuUJqzBw0_WvF-3" target="-FK1nzbLuUJqzBw0_WvF-18">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="-FK1nzbLuUJqzBw0_WvF-3" value="监听443端口&lt;br&gt;对外Web端口" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="270" y="285" width="150" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="-FK1nzbLuUJqzBw0_WvF-4" value="监听8443端口&lt;br&gt;Accept client TCP长连接" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="270" y="370" width="150" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="-FK1nzbLuUJqzBw0_WvF-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;curved=1;" edge="1" parent="1" source="-FK1nzbLuUJqzBw0_WvF-5" target="-FK1nzbLuUJqzBw0_WvF-3">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="-FK1nzbLuUJqzBw0_WvF-19" value="请求[host | x-cg-id] + 健康检查[502 | 504}" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="-FK1nzbLuUJqzBw0_WvF-9">
-          <mxGeometry x="-0.0667" y="4" relative="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="-FK1nzbLuUJqzBw0_WvF-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;curved=1;" edge="1" parent="1" source="-FK1nzbLuUJqzBw0_WvF-7" target="-FK1nzbLuUJqzBw0_WvF-4">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="-FK1nzbLuUJqzBw0_WvF-12" value="TCP长连接[server_token(insid + cgid)]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="-FK1nzbLuUJqzBw0_WvF-11">
-          <mxGeometry x="-0.1133" y="2" relative="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="-FK1nzbLuUJqzBw0_WvF-15" value="" style="group" vertex="1" connectable="0" parent="1">
-          <mxGeometry x="710" y="360" width="150" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="-FK1nzbLuUJqzBw0_WvF-7" value="connector_cli" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="-FK1nzbLuUJqzBw0_WvF-15">
-          <mxGeometry width="130" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="-FK1nzbLuUJqzBw0_WvF-13" value="connector_cli" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="-FK1nzbLuUJqzBw0_WvF-15">
-          <mxGeometry x="10" y="10" width="130" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="-FK1nzbLuUJqzBw0_WvF-14" value="connector_cli" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="-FK1nzbLuUJqzBw0_WvF-15">
-          <mxGeometry x="20" y="20" width="130" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="-FK1nzbLuUJqzBw0_WvF-17" value="" style="group" vertex="1" connectable="0" parent="1">
-          <mxGeometry x="710" y="280" width="140" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="-FK1nzbLuUJqzBw0_WvF-5" value="JFE" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="-FK1nzbLuUJqzBw0_WvF-17">
-          <mxGeometry width="130" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="-FK1nzbLuUJqzBw0_WvF-16" value="JFE" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="-FK1nzbLuUJqzBw0_WvF-17">
-          <mxGeometry x="10" y="10" width="130" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="-FK1nzbLuUJqzBw0_WvF-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="-FK1nzbLuUJqzBw0_WvF-18" target="-FK1nzbLuUJqzBw0_WvF-14">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="160" y="490" />
-              <mxPoint x="795" y="490" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="-FK1nzbLuUJqzBw0_WvF-18" value="专线组查找&lt;br&gt;map[CGID][sshConn1,sshConn2,...]。" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="80" y="285" width="150" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="-FK1nzbLuUJqzBw0_WvF-27" value="a.com" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="930" y="370" width="130" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="-FK1nzbLuUJqzBw0_WvF-28" value="b.com" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="930" y="440" width="130" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
